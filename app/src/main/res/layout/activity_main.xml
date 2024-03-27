@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/editText"
         android:layout_width="249dp"
         android:layout_height="68dp"
         android:layout_marginTop="56dp"
@@ -22,10 +22,12 @@
         android:id="@+id/button"
         android:layout_width="82dp"
         android:layout_height="75dp"
+        android:layout_marginTop="45dp"
+        android:onClick="exe"
         android:text="+"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
-        tools:layout_editor_absoluteY="169dp" />
+        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <Button
         android:id="@+id/button2"
@@ -33,17 +35,20 @@
         android:layout_height="75dp"
         android:text="-"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+        android:onClick="exe1"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="@+id/button" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="82dp"
         android:layout_height="75dp"
+        android:layout_marginTop="51dp"
         android:text="*"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
-        tools:layout_editor_absoluteY="295dp" />
+        android:onClick="exe2"
+        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
         android:id="@+id/button4"
@@ -51,7 +56,8 @@
         android:layout_height="75dp"
         android:text="/"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+        android:onClick="exe3"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
         app:layout_constraintTop_toTopOf="@+id/button3" />
 
     <Button
@@ -59,10 +65,12 @@
         android:layout_width="100dp"
         android:layout_height="61dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="42dp"
         android:text="A/C"
         android:textSize="24sp"
+        android:onClick="exe5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="412dp" />
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
         android:id="@+id/button6"
@@ -71,6 +79,7 @@
         android:layout_marginEnd="40dp"
         android:text="="
         android:textSize="24sp"
+        android:onClick="exe4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button5" />
 
@@ -78,8 +87,11 @@
         android:id="@+id/button7"
         android:layout_width="127dp"
         android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:text="next"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="657dp" />
+        android:onClick="exe6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.ronibananointent;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -23,9 +24,13 @@ public class MainActivity2 extends AppCompatActivity {
             return insets;
         });
 
-        Intent intent = getIntent();
-        int x = intent.getIntExtra("n",1);
-        finish();
+        Intent gi = getIntent();
+        int x = gi.getIntExtra("n",1);
 
+
+    }
+
+    public void exe7(View view) {
+        finish();
     }
 }

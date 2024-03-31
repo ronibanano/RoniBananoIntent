@@ -45,23 +45,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void exe(View view) {
-        resulte=resulte+ed1.getTextDirection();
-        ed1.setText("+");
+        String st=ed1.getText().toString();
+        int num = Integer.parseInt(st);
+        resulte=resulte+num;
+        ed1.setText("");
     }
 
     public void exe1(View view) {
-        resulte=resulte-ed1.getTextDirection();
-        ed1.setText("-");
+        String st=ed1.getText().toString();
+        int num = Integer.parseInt(st);
+        resulte=resulte-num;
+        ed1.setText("");
     }
 
     public void exe2(View view) {
-        resulte=resulte*ed1.getTextDirection();
-        ed1.setText("*");
+        String st=ed1.getText().toString();
+        int num = Integer.parseInt(st);
+        resulte=resulte*num;
+        ed1.setText("");
     }
 
     public void exe3(View view) {
-        resulte=resulte/ed1.getTextDirection();
-        ed1.setText("/");
+        String st=ed1.getText().toString();
+        int num = Integer.parseInt(st);
+        if (num==0)
+            ed1.setText("Error");
+        else {
+            resulte = resulte / num;
+            ed1.setText("");
+        }
+
     }
 
     public void exe4(View view) {

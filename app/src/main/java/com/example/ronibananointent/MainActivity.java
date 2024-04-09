@@ -15,14 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     private EditText ed1;
-    private Button b1;
-    private Button b2;
-    private Button b3;
-    private Button b4;
-    private Button b5;
-    private Button b6;
-    private Button b7;
-    int resulte=0;
+    private Button plus,minus,multi,divid,clear,equal,credit;
+
+    float resulte=0;
+    int count=0;
+    String oper,str;
+    float num;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,61 +33,176 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        oper="";
+        str="";
         ed1 = findViewById(R.id.editText);
-        b1= findViewById(R.id.button);
-        b2= findViewById(R.id.button2);
-        b3= findViewById(R.id.button3);
-        b4= findViewById(R.id.button4);
-        b5= findViewById(R.id.button5);
-        b6= findViewById(R.id.button6);
-        b7= findViewById(R.id.button7);
+        plus= findViewById(R.id.button);
+        minus= findViewById(R.id.button2);
+        multi= findViewById(R.id.button3);
+        divid= findViewById(R.id.button4);
+        clear= findViewById(R.id.button5);
+        equal= findViewById(R.id.button6);
+        credit= findViewById(R.id.button7);
     }
-
-    public void exe(View view) {
-        String st=ed1.getText().toString();
-        int num = Integer.parseInt(st);
-        resulte=resulte+num;
-        ed1.setText("");
-    }
-
-    public void exe1(View view) {
-        String st=ed1.getText().toString();
-        int num = Integer.parseInt(st);
-        resulte=resulte-num;
-        ed1.setText("");
-    }
-
-    public void exe2(View view) {
-        String st=ed1.getText().toString();
-        int num = Integer.parseInt(st);
-        resulte=resulte*num;
-        ed1.setText("");
-    }
-
-    public void exe3(View view) {
-        String st=ed1.getText().toString();
-        int num = Integer.parseInt(st);
-        if (num==0)
-            ed1.setText("Error");
-        else {
-            resulte = resulte / num;
-            ed1.setText("");
+    public void plus(View view) {
+        str=ed1.getText().toString();
+        if(!str.isEmpty()){
+            count+=1;
+            num=Float.parseFloat(str);
+            if(oper.equals("-"))
+                resulte-=num;
+            else if(oper.equals("*"))
+                resulte*=num;
+            else if(oper.equals("/")) {
+                if (num == 0)
+                    ed1.setText("Error");
+                else
+                    resulte /= num;
+            }
+            else
+                resulte+=num;
+            oper="+";
         }
 
-    }
-
-    public void exe4(View view) {
-        ed1.setText(resulte);
-    }
-
-    public void exe5(View view) {
         ed1.setText("");
-        resulte=0;
+        ed1.getHint();
     }
 
-    public void exe6(View view) {
-        Intent si= new Intent(this,MainActivity2.class);
-        si.putExtra("n",resulte);
+    public void minus(View view) {
+        str=ed1.getText().toString();
+        if(!str.isEmpty()){
+            count+=1;
+            num=Float.parseFloat(str);
+            if(oper.equals("+"))
+                resulte+=num;
+            else if(oper.equals("*"))
+                resulte*=num;
+            else if(oper.equals("/")) {
+                if (num == 0)
+                    ed1.setText("Error");
+                else
+                    resulte /= num;
+            }
+            else{
+                if(count==1)
+                    if(oper.equals(""))
+                        resulte=num;
+                    else
+                        resulte=Float.valueOf(-num);
+                else
+                    resulte-=num;
+            }
+
+        }
+
+        oper="-";
+        ed1.setText("");
+        ed1.getHint();
+
+    }
+
+    public void multi(View view) {
+        str=ed1.getText().toString();
+        if(!str.isEmpty()){
+            count+=1;
+            num=Float.parseFloat(str);
+            if(oper.equals("+"))
+                resulte+=num;
+            else if(oper.equals("-"))
+                resulte-=num;
+            else if(oper.equals("/")){
+                if(num==0)
+                    ed1.setText("Error");
+                else
+                    resulte /= num;
+            }
+            else{
+                if(count==1)
+                    resulte=num;
+                else
+                    resulte*=num;
+            }
+
+            oper="*";
+
+        }
+
+        ed1.setText("");
+        ed1.getHint();
+    }
+
+    public void divid(View view) {
+        str=ed1.getText().toString();
+        if(!str.isEmpty()){
+            count+=1;
+            num=Float.parseFloat(str);
+            if(oper.equals("+"))
+                resulte+=num;
+            else if(oper.equals("-"))
+                resulte-=num;
+            else if (oper.equals("*"))
+                resulte*=num;
+            else{
+                if(count==1)
+                    resulte=num;
+                else if (num == 0)
+                    ed1.setText("Error");
+                else
+                    resulte/=num;
+            }
+
+            oper="/";
+        }
+
+        ed1.setText("");
+        ed1.getHint();
+    }
+
+    public void equal(View view) {
+        if (oper.equals("+")) {
+            str = ed1.getText().toString();
+            num = Float.parseFloat(str);
+            resulte += num;
+        }
+        if (oper.equals("-")) {
+            str = ed1.getText().toString();
+            num = Float.parseFloat(str);
+            resulte -= num;
+        }
+        if (oper.equals("*")) {
+            str = ed1.getText().toString();
+            num = Float.parseFloat(str);
+            resulte *= num;
+        }
+        if (oper.equals("/")) {
+            str = ed1.getText().toString();
+            num = Float.parseFloat(str);
+            if(num==0)
+                ed1.setText("Error");
+
+            else {
+                resulte /= num;
+                ed1.setText(resulte + "");
+            }
+        }
+        else
+            ed1.setText(resulte+"");
+    }
+
+    public void clear(View view) {
+        count=0;
+        resulte=0;
+        oper="";
+        ed1.setText("");
+        ed1.getHint();
+    }
+
+    public void next(View view) {
+        Intent si = new Intent(this,MainActivity2.class);
+        if(ed1.getText().toString().equals("Error"))
+            si.putExtra("error","Error");
+        else
+            si.putExtra("n",resulte);
         startActivity(si);
     }
 }

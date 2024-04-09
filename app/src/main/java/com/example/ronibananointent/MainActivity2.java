@@ -3,6 +3,7 @@ package com.example.ronibananointent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,6 +13,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity2 extends AppCompatActivity {
+    private TextView result;
+    private Button back;
+    private String str;
+    private float num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +28,23 @@ public class MainActivity2 extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        result=findViewById(R.id.textView);
+        back=findViewById(R.id.button8);
         Intent gi = getIntent();
-        int x = gi.getIntExtra("n",1);
+        if(gi.hasExtra("error"))
+            result.setText("Error");
+        else {
+            num = gi.getFloatExtra("n", 0);
+            result.setText("result:"+num + "");
+
 
 
     }
 
-    public void exe7(View view) {
+
+}
+
+    public void back(View view) {
         finish();
     }
 }
